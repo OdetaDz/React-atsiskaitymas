@@ -1,14 +1,21 @@
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledHeader = styled.header`
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+`;
 
 const Header = () => {
     return ( 
-        <header>
+        <StyledHeader>
             <div>
                 <img src="" alt="" />
             </div>
             <nav>
                 <ul>
-                    <li>Home</li>
+                    <li><NavLink to="/">Home</NavLink></li>
                     <li>Questions</li>
                 </ul>
             </nav>
@@ -18,7 +25,7 @@ const Header = () => {
                     <li>Sign Up</li>
                 </ul>
             </div>
-        </header>
+        </StyledHeader>
      );
 }
  
