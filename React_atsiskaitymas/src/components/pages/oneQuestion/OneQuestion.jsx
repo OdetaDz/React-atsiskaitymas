@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import QuestionsContext from '../../../context/QuestionsContext';
+import UsersContext from "../../../context/UserContext";
+import AwnsersContext from "../../../context/AwnsersContext";
 
 const StyledQuestionPage = styled.main`
     display: flex;
@@ -16,12 +18,14 @@ const OneQuestion = () => {
     const navigate = useNavigate();
     const [question, setQuestion] = useState('');
     const {setQuestions, QuestionsActionTypes} = useContext(QuestionsContext);
+    const { users, loggedInUser } = useContext(UsersContext);
+    const { awnsers } = useContext(AwnsersContext);
+
 
     useEffect(() => {
         fetch(`http://localhost:8081/questions/${id}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if(!data.name){
                     navigate('/');
                 }
@@ -35,6 +39,26 @@ const OneQuestion = () => {
             <div>
                 <h1>{question.name}</h1>
                 <p>{question.question}</p>
+            </div>
+            <div>
+                {
+                    question.edited ? <span>edited: {question.modified}</span> : <span style={{width: "75px"}}></span>
+                }
+                {
+                    users.filter(user => user.id === question.creatorId).map(user => {
+                        return <span>{user.userName}</span>
+                    }) 
+                }
+            </div>
+            <div>
+                {
+                    awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
+                        return <>
+                            <p>{awnser.awnser}</p>
+                            <span>{awnser.creatorUserName}</span>
+                        </>
+                    })
+                }
             </div>
         </StyledQuestionPage>
      );

@@ -42,10 +42,7 @@ const StyledQuestionDiv = styled.div`
 
 const OneQuestionCard = ({ data }) => {
 
-    const { users } = useContext(UsersContext);
-    console.log(users);
-
-        
+    const { users } = useContext(UsersContext);       
         
     return ( 
         <StyledQuestionDiv>
