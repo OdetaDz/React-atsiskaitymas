@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import UsersContext from "../../../context/UserContext";
 
 const StyledQuestionDiv = styled.div`
     display: grid;
@@ -39,6 +41,12 @@ const StyledQuestionDiv = styled.div`
 `;
 
 const OneQuestionCard = ({ data }) => {
+
+    const { users } = useContext(UsersContext);
+    console.log(users);
+
+        
+        
     return ( 
         <StyledQuestionDiv>
             <div className="votes">
@@ -51,8 +59,15 @@ const OneQuestionCard = ({ data }) => {
                     <p>{data.question.substring(0, 100)}...</p>
                 </div>
                 <div className="creator">
-                    <span>creator</span>
-                    <span>modified</span>
+                    {
+                        users.filter(user => user.id === data.creatorId).map(user => {
+                            return <span>{user.userName}</span>
+                        })
+                         
+                    }
+                    {
+                        data.edited ? <span>{data.modified}</span> : <span style={{width: "75px"}}></span>
+                    }
                 </div>
             </div>
         </StyledQuestionDiv>

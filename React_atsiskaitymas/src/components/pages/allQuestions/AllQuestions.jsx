@@ -2,6 +2,7 @@ import { useContext } from "react";
 import QuestionsContext from "../../../context/QuestionsContext"
 import OneQuestionCard from "../../UI/oneQuestionCard/OneQuestionCard";
 import styled from "styled-components";
+import UsersContext from "../../../context/UserContext";
 
 const StyledQuetionsMain = styled.main`
     /* padding: 20px 40px; */
@@ -22,6 +23,7 @@ const StyledQuetionsMain = styled.main`
 const AllQuestions = () => {
 
     const { questions } = useContext(QuestionsContext);
+   
 
     return ( 
         <StyledQuetionsMain>
