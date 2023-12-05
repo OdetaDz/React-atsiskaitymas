@@ -6,6 +6,7 @@ import Main from './components/pages/main/Main';
 import AllQuestions from './components/pages/allQuestions/AllQuestions';
 import OneQuestion from './components/pages/oneQuestion/OneQuestion';
 import Register from './components/pages/register/Register';
+import LogIn from './components/pages/logIn/LogIn';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path=":id" element={<OneQuestion />} />
       </Route>
       <Route path="/user">
-        {/* <Route path="login" element={} /> */}
+        <Route path="login" element={<LogIn />} />
         <Route path="register" element={<Register />} />
 
       </Route>
