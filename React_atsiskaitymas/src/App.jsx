@@ -5,6 +5,7 @@ import Header from './components/UI/header/Header';
 import Main from './components/pages/main/Main';
 import AllQuestions from './components/pages/allQuestions/AllQuestions';
 import OneQuestion from './components/pages/oneQuestion/OneQuestion';
+import Register from './components/pages/register/Register';
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
       <Route path="questions">
           <Route path="allQuestions" element={<AllQuestions />} />
           <Route path=":id" element={<OneQuestion />} />
+      </Route>
+      <Route path="/user">
+        {/* <Route path="login" element={} /> */}
+        <Route path="register" element={<Register />} />
+
       </Route>
    </Routes>
    <Footer />
