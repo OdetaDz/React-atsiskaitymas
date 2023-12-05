@@ -1,0 +1,61 @@
+Baigiamasis projektas
+
+Šio projekto metu reikės sukurti internetinį forumą naudojant React ir JSON-server.
+Forumo tikslas - leisti užduoti klausimus, į juos atsakinėti ir žymėti patinkančius arba nepatinkančius atsakymus ir klausimus.
+Galite įsivaizduoti kažką panašaus į https://stackoverflow.com/questions, tik truputį supaprastintą versiją.
+
+Funkcionalumas:
+1. Registruotis
+2. Prisijungti
+3. Užduoti naują klausimą (tik prisijungus)
+4. Redaguoti užduotą klausimą (UI turi matytis, kad klausimas buvo redaguotas) (tik prisijungus, tik tam vartotojui, kuris klausimą uždavė)
+5. Ištrinti klausimą (tik prisijungus, tik tam vartotojui, kuris klausimą uždavė)
+6. Atsakyti į užduotą klausimą (komentuoti) (tik prisijungus)
+7. Redaguoti atsakymą (taip pat turi matytis, kad atsakymas buvo redaguotas) (tik prisijungus, tik tam vartotojui, kuris atsakymą parašė)
+8. Ištrinti atsakymą (tik prisijungus, tik tam vartotojui, kuris atsakymą parašė)
+9. Žymėti/atžymėti patinkančius ir nepatinkančius atsakymus ir klausimus (like/dislike) (tik prisijungus)
+10. Peržiūrėti klausimų sąrašą su galimybe rikiuoti pagal klausimo datą ir/arba atsakymų skaičių (didėjimo arba mažėjimo tvarka)
+11. Filtruoti atsakytus arba neatsakytus klausimus
+12. Peržiūrėti klausimus ir jų atsakymus
+
+Forumo projektas sudeda iš frontend'o ir backend'o dalių:
+Backend'ą ir DB atstos JSON-server'is.
+Frontend'e naudoti React. Galima naudoti papildomus npm paketus. Negalima naudoti komponentų bibliotekų (MUI, Ant Design, Bootstrap...)
+
+### Backend'as
+
+Galimybė kreiptis į duomenų laukus norint juos:
+Gauti visus arba specifinį
+Pridėti naują
+Trinti specifinį
+Redaguoti specifinį
+
+#### Duomenų bazė
+
+Duomenų bazėje saugoti visą informaciją - klausimus, atsakymus ir vartotojus.
+
+Duomenų pavyzdys (neprivalo taip atrodyti):
+Klausimas: id, kūrėjoId, pavadinimas, klausimas, patiktukų Kiekis, arRedaguotas.
+Atsakymas: id, klausimoId, kūrėjoId, atsakymas, patiktukųKiekis, arRedaguotas.
+Vartotojas: id, vardas, elPaštas, slaptažodis, nuotrauka.
+### Frontend'as
+
+Frontend'as neturi nustatyto dizaino vaizdo (angl. wireframes), kurį reikia atkartoti. Tačiau jums tenka sunkesnė užduotis - patiems sugalvoti ir sukurti puslapio dizainą. Negalima naudoti komponentų bibliotekų (MUI, Ant Design, Bootstrap...)
+Siūloma naudoti react-router-dom kuriant skirtingus puslapius. Siūloma saugoti duomenis kaip globalias būsenas naudojant Context arba Redux.
+Svarbiausia išpildyti visus funkcinius reikalavimus, verifikuoti vartotojus ir validuoti duomenų įvestis (informaciją apie neteisingai įvestus laukus atvaizduoti prie tų laukų (vartotojui dar nepaspaudus submit)).
+
+
+Užduoties įkėlimo instrukcijos
+
+Instrukcijas, kaip valdyti GitHub repozitorijas rasite - https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories arba step-by-step žemiau.
+1. Sukurti GitHub repozitoriją (VIEŠĄ).
+Instrukcijas, kaip susikurti GitHub repozitoriją rasite - https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
+2. Pakeitimus daryti atskiroje šakoje (pvz. dev), kad būtų galima sukurti Pull Request.
+Kaip galima sukurti Pull Request galite sužinoti čia - https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+Naują šaką galima susikurti įvykdžius `git checkout -b dev` komandą terminale.
+3. Kuriant sistemą pakeitimus nuolatos saugoti su prasmingomis "commit" žinutėmis.
+4. Turėti README.md failą, kuriame nurodyta kaip paleisti projektą (kokias terminalo eilutes, kokiu eiliškumu naudoti, kad projektas tvarkingai pasileistų).
+5. Įkelti į projektą nusipiešta wireframes arba prototypes (https://www.springboard.com/blog/wp-content/uploads/2021/05/difference-between-wireframe-prototype-and-mockup.jpeg).
+6. Pabaigus projektą patikrinti ar visi pakeitimai yra nusiųsti į GitHub, sukurti Pull Request per GitHub puslapį į pagrindinę šaką (`main` arba `master`) ir pateikti nuorodą šiame "assignment".
+
+Sėkmės!

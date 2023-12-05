@@ -47,7 +47,7 @@ const OneQuestionCard = ({ data }) => {
             </div>
             <div>
                 <div className="question">
-                    <h1><Link to="/">{data.name}</Link></h1>
+                    <h1><Link to={`/questions/${data.id}`}>{data.name}</Link></h1>
                     <p>{data.question.substring(0, 100)}...</p>
                 </div>
                 <div className="creator">
