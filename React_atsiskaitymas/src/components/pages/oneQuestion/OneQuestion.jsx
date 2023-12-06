@@ -58,6 +58,7 @@ const OneQuestion = () => {
                 questionId: question.id,
                 creatorUserName: loggedInUser.userName,
                 ...values,
+                likes: '',
                 edited: false,
                 modified: ''
             }
