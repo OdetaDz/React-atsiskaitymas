@@ -65,7 +65,9 @@ const OneQuestion = () => {
                 {
                     loggedInUser && question.creatorId === loggedInUser.id ?
                         <>
-                            <button>Edit</button>
+                            <button
+                                onClick={() => navigate(`/questions/edit/${id}`)}
+                            >Edit</button>
                             <button
                                 onClick={() => {
                                     setQuestions({ type: QuestionsActionTypes.delete, id: id});
