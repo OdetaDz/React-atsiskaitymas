@@ -8,7 +8,6 @@ import AwnserBox from "../../UI/awnserBox/AwnserBox";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { v4 as uuid } from "uuid";
-import FormikInput from "../../UI/formikInput/FormikInput";
 
 const StyledQuestionPage = styled.main`
     display: flex;

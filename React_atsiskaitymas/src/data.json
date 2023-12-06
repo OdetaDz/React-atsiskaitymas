@@ -78,6 +78,15 @@
       "edited": false,
       "modified": "",
       "likes": 0
+    },
+    {
+      "id": "a74085f9-2f7b-4003-9624-1ed5b7ebeda9",
+      "creatorId": 1,
+      "name": "Is this really working?? :)",
+      "question": "Please tell me this is working like I want it to work :D",
+      "edited": false,
+      "modified": "",
+      "likes": ""
     }
   ],
   "awnsers": [
@@ -90,34 +99,6 @@
       "likes": 0,
       "edited": true,
       "modified": "2023-12-05"
-    },
-    {
-      "id": 2,
-      "questionId": 2,
-      "creatorId": 3,
-      "creatorUserName": "CurageTCD",
-      "awnser": "test test",
-      "likes": 0,
-      "edited": false,
-      "modified": ""
-    },
-    {
-      "id": "ef05ea86-fc3c-4bcd-bbcf-309b618b2f5a",
-      "creatorId": 1,
-      "questionId": 1,
-      "creatorUserName": "Admin",
-      "awnser": "Well why not?",
-      "edited": false,
-      "modified": ""
-    },
-    {
-      "id": "a2fdfe32-5d78-4e8a-ad11-f12c8f3b79fe",
-      "creatorId": 1,
-      "questionId": 1,
-      "creatorUserName": "Admin",
-      "awnser": "i choose this",
-      "edited": false,
-      "modified": ""
     }
   ]
 }
