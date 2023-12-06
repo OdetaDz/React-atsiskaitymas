@@ -47,7 +47,7 @@ const OneQuestion = () => {
                 }
                 {
                     users.filter(user => user.id === question.creatorId).map(user => {
-                        return <span key={user.id}>{user.userName}</span>
+                        return <span>{user.userName}</span>
                     }) 
                 }
             </div>
@@ -60,6 +60,21 @@ const OneQuestion = () => {
                         />
                     })
                 }
+            </div>
+            <div>
+                {
+                    loggedInUser && question.creatorId === loggedInUser.id ?
+                        <>
+                            <button>Edit</button>
+                            <button
+                                onClick={() => {
+                                    setQuestions({ type: QuestionsActionTypes.delete, id: id});
+                                    navigate("/questions/allQuestions")
+                                }}
+                            >Delete</button>
+                        </> :
+                        ''
+                    }
             </div>
         </StyledQuestionPage>
      );
