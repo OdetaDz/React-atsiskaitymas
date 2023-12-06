@@ -5,6 +5,10 @@ import QuestionsContext from '../../../context/QuestionsContext';
 import UsersContext from "../../../context/UserContext";
 import AwnsersContext from "../../../context/AwnsersContext";
 import AwnserBox from "../../UI/awnserBox/AwnserBox";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { v4 as uuid } from "uuid";
+import FormikInput from "../../UI/formikInput/FormikInput";
 
 const StyledQuestionPage = styled.main`
     display: flex;
@@ -20,7 +24,7 @@ const OneQuestion = () => {
     const [question, setQuestion] = useState('');
     const {setQuestions, QuestionsActionTypes} = useContext(QuestionsContext);
     const { users, loggedInUser } = useContext(UsersContext);
-    const { awnsers } = useContext(AwnsersContext);
+    const { awnsers, setAwnsers, AwnsersActionTypes } = useContext(AwnsersContext);
 
 
     useEffect(() => {
@@ -33,6 +37,39 @@ const OneQuestion = () => {
                 setQuestion(data)
             })
     }, []);
+
+    const values = {
+        awnser: ''
+    };
+
+    const validationSchema = Yup.object({
+        awnser: Yup.string()
+            .max(500, "maximum 500 symbols for questions name")
+            .required("This field must be filled")
+            .trim()
+    });
+
+    const formik = useFormik({
+        initialValues: values,
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            const finalValues = {
+                id: uuid(),
+                creatorId: loggedInUser.id,
+                questionId: question.id,
+                creatorUserName: loggedInUser.userName,
+                ...values,
+                edited: false,
+                modified: ''
+            }
+            setAwnsers({
+                type: AwnsersActionTypes.add,
+                data: finalValues
+            });
+            formik.resetForm();
+            
+        }
+    })
 
     return ( 
         question &&
@@ -53,16 +90,6 @@ const OneQuestion = () => {
             </div>
             <div>
                 {
-                    awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
-                        return <AwnserBox
-                            key = {awnser.id}
-                            data = {awnser}
-                        />
-                    })
-                }
-            </div>
-            <div>
-                {
                     loggedInUser && question.creatorId === loggedInUser.id ?
                         <>
                             <button
@@ -77,6 +104,42 @@ const OneQuestion = () => {
                         </> :
                         ''
                     }
+            </div>
+            <div>
+                {
+                    awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
+                        return <AwnserBox
+                            key = {awnser.id}
+                            data = {awnser}
+                        />
+                    })
+                }
+            </div>
+            <div>
+                {
+                    loggedInUser ? 
+                    <form onSubmit={formik.handleSubmit}>
+                        <div>
+                            <textarea
+                                name="awnser"
+                                id="awnser"
+                                value={formik.values.awnser}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                placeholder="Write your awnser here..."
+                            ></textarea>
+                            {
+                                formik.touched.awnser && formik.errors.awnser && 
+                                <p style={{color:"red"}}>{formik.errors.awnser}</p>
+                            }
+                        </div>
+                        <button type="submit"
+                            onClick={() => navigate(`/questions/${id}`)}
+                        >Add awnser</button>
+                    </form>
+                    :
+                    <p>You need to sign in or sign up to awnser questions</p>
+                }
             </div>
         </StyledQuestionPage>
      );

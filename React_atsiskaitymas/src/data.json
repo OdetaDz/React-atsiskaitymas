@@ -100,6 +100,24 @@
       "likes": 0,
       "edited": false,
       "modified": ""
+    },
+    {
+      "id": "ef05ea86-fc3c-4bcd-bbcf-309b618b2f5a",
+      "creatorId": 1,
+      "questionId": 1,
+      "creatorUserName": "Admin",
+      "awnser": "Well why not?",
+      "edited": false,
+      "modified": ""
+    },
+    {
+      "id": "a2fdfe32-5d78-4e8a-ad11-f12c8f3b79fe",
+      "creatorId": 1,
+      "questionId": 1,
+      "creatorUserName": "Admin",
+      "awnser": "i choose this",
+      "edited": false,
+      "modified": ""
     }
   ]
 }
