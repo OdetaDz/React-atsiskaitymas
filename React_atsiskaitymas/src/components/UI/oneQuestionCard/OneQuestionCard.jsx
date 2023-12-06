@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import UsersContext from "../../../context/UserContext";
+import AwnsersContext from "../../../context/AwnsersContext";
 
 const StyledQuestionDiv = styled.div`
     display: grid;
@@ -42,13 +43,14 @@ const StyledQuestionDiv = styled.div`
 
 const OneQuestionCard = ({ data }) => {
 
-    const { users } = useContext(UsersContext);       
-        
+    const { users } = useContext(UsersContext); 
+    const { awnsers } = useContext(AwnsersContext);
+    const skaicius = awnsers.filter(awnser => awnser.questionId === data.id).length
     return ( 
         <StyledQuestionDiv>
             <div className="votes">
                 <span>votes</span>
-                <span>comments</span>
+                <span>comments: {skaicius}</span>
             </div>
             <div>
                 <div className="question">
@@ -57,14 +59,14 @@ const OneQuestionCard = ({ data }) => {
                 </div>
                 <div className="creator">
                     {
+                        data.edited ? <span>edited: {data.modified}</span> : <span style={{width: "75px"}}></span>
+                    }
+                    {
                         users.filter(user => user.id === data.creatorId).map(user => {
                             return <span>{user.userName}</span>
                         })
-                         
                     }
-                    {
-                        data.edited ? <span>{data.modified}</span> : <span style={{width: "75px"}}></span>
-                    }
+                    
                 </div>
             </div>
         </StyledQuestionDiv>
