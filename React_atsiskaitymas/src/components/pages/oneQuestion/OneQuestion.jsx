@@ -4,6 +4,7 @@ import styled from "styled-components";
 import QuestionsContext from '../../../context/QuestionsContext';
 import UsersContext from "../../../context/UserContext";
 import AwnsersContext from "../../../context/AwnsersContext";
+import AwnserBox from "../../UI/awnserBox/AwnserBox";
 
 const StyledQuestionPage = styled.main`
     display: flex;
@@ -46,17 +47,17 @@ const OneQuestion = () => {
                 }
                 {
                     users.filter(user => user.id === question.creatorId).map(user => {
-                        return <span>{user.userName}</span>
+                        return <span key={user.id}>{user.userName}</span>
                     }) 
                 }
             </div>
             <div>
                 {
                     awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
-                        return <>
-                            <p>{awnser.awnser}</p>
-                            <span>{awnser.creatorUserName}</span>
-                        </>
+                        return <AwnserBox
+                            key = {awnser.id}
+                            data = {awnser}
+                        />
                     })
                 }
             </div>

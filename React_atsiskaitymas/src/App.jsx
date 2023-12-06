@@ -7,6 +7,7 @@ import AllQuestions from './components/pages/allQuestions/AllQuestions';
 import OneQuestion from './components/pages/oneQuestion/OneQuestion';
 import Register from './components/pages/register/Register';
 import LogIn from './components/pages/logIn/LogIn';
+import AddQuestion from './components/pages/addQuestion/AddQuestion';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="questions">
           <Route path="allQuestions" element={<AllQuestions />} />
           <Route path=":id" element={<OneQuestion />} />
+          <Route path="addNew" element={<AddQuestion />}/>
       </Route>
       <Route path="/user">
         <Route path="login" element={<LogIn />} />
