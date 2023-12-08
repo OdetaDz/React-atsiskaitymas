@@ -45,7 +45,7 @@ const OneQuestionCard = ({ data }) => {
 
     const { users } = useContext(UsersContext); 
     const { awnsers } = useContext(AwnsersContext);
-    const skaicius = awnsers.filter(awnser => awnser.questionId === data.id).length
+    const skaicius = awnsers.filter(awnser => awnser.questionId === data.id).length;
     return ( 
         <StyledQuestionDiv>
             <div className="votes">
