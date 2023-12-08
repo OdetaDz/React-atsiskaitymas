@@ -40,6 +40,7 @@ const AddQuestion = () => {
                 id: uuid(),
                 creatorId: loggedInUser.id,
                 ...values,
+                created: new Date().toISOString().slice(0,10),
                 edited: false,
                 modified: '',
                 likes: ''
