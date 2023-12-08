@@ -22,12 +22,12 @@ const AwnserBox = ({ data }) => {
     useEffect(() => {
         fetch(`http://localhost:8081/awnsers/${data.id}`)
             .then(res => res.json())
-            .then(awnserData => {
-                if(!awnserData.awnser){
+            .then(data => {
+                if(!data.awnser){
                     navigate('/');
                 }
                 setFormValues({
-                    ...awnserData
+                    ...data
                 });
             })
     }, []);
@@ -59,7 +59,7 @@ const AwnserBox = ({ data }) => {
                         <button
                             onClick={() => {
                                 setAwnsers({ type: AwnsersActionTypes.delete, 
-                                    id: id});
+                                    id: data.id});
                                     navigate(`/questions/${data.questionId}`)
                             }}
                         >Delete</button>
