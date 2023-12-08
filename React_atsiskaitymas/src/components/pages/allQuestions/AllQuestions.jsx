@@ -29,7 +29,6 @@ const AllQuestions = () => {
     const { questions } = useContext(QuestionsContext);
     const { loggedInUser, users } = useContext(UsersContext);
     const { awnsers } = useContext(AwnsersContext);
-    // const commentNumber = awnsers.filter(awnser => awnser.questionId === data.id).length
     const [ sortByDate, setSortByDate ] = useState(false);
 
     return ( 
@@ -44,7 +43,7 @@ const AllQuestions = () => {
                 <span>Sort:</span>
                 <button
                     onClick={() => {setSortByDate(!sortByDate)}}
-                >By {sortByDate ? "oldest" : "newest"}</button>
+                >By {sortByDate ? "Oldest" : "Newest"}</button>
             </div>
             <div className="questions">
                 {
