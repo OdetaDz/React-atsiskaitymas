@@ -58,11 +58,10 @@
       "id": 2,
       "creatorId": 1,
       "name": "Tell me why?",
-      "question": "Tell me why Ain't nothin' but a heartache Tell me why Ain't nothin' but a mistake Tell me why I never wanna hear you say I want it that way",
+      "question": "Tell me why, Ain't nothin' but a heartache, Tell me why, Ain't nothin' but a mistake, Tell me why, I never wanna hear you say, I want it that way",
       "created": "2023-12-03",
-      "comments": 1,
-      "edited": true,
-      "modified": "2023-12-06",
+      "edited": false,
+      "modified": "",
       "likes": 0
     },
     {
@@ -71,7 +70,6 @@
       "name": "Why cats?",
       "question": "The cat, commonly referred to as the domestic cat or house cat, is the only domesticated species in the family Felidae. Recent advances in archaeology and genetics have shown that the domestication of the cat occurred in the Near East around 7500 BC",
       "created": "2023-12-02",
-      "comments": 0,
       "edited": false,
       "modified": "",
       "likes": 0
@@ -82,7 +80,6 @@
       "name": "Who?",
       "question": "Owls are birds from the order Strigiformes, which includes over 200 species of mostly solitary and nocturnal birds of prey typified by an upright stance, a large, broad head, binocular vision, binaural hearing, sharp talons, and feathers adapted for silent flight.",
       "created": "2023-12-01",
-      "comments": 0,
       "edited": false,
       "modified": "",
       "likes": 0
@@ -93,7 +90,6 @@
       "name": "Is this really working?? :)",
       "question": "Please tell me this is working like I want it to work :D",
       "created": "2023-12-02",
-      "comments": 0,
       "edited": false,
       "modified": "",
       "likes": 0
@@ -151,21 +147,11 @@
       "modified": ""
     },
     {
-      "id": "538797f8-97b8-43b7-9651-4c00827905a0",
+      "id": "9b91a160-89f5-444c-a784-6cc8eb529bc5",
       "creatorId": 1,
-      "questionId": 2,
+      "questionId": 1,
       "creatorUserName": "Admin",
-      "awnser": "test1",
-      "likes": 0,
-      "edited": false,
-      "modified": ""
-    },
-    {
-      "id": "5b1914a9-84e4-47b0-8f06-b4b0eacff073",
-      "creatorId": 1,
-      "questionId": 2,
-      "creatorUserName": "Admin",
-      "awnser": "hii",
+      "awnser": "Well why not? :D",
       "likes": 0,
       "edited": false,
       "modified": ""
