@@ -20,7 +20,7 @@ function App() {
           <Route path="allQuestions" element={<AllQuestions />} />
           <Route path=":id" element={<OneQuestion />} />
           <Route path="addNew" element={<AddQuestion />}/>
-          <Route path="edit/:id" element={<EditQuestion />} />
+          <Route path="edit/:id" element={<EditQuestion />} />   
       </Route>
       <Route path="/user">
         <Route path="login" element={<LogIn />} />

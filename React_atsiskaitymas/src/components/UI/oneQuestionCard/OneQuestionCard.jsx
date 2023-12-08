@@ -49,8 +49,9 @@ const OneQuestionCard = ({ data }) => {
     return ( 
         <StyledQuestionDiv>
             <div className="votes">
-                <span>votes</span>
+                <span>votes: {data.likes}</span>
                 <span>comments: {skaicius}</span>
+                <span>Asked: {data.created}</span>
             </div>
             <div>
                 <div className="question">

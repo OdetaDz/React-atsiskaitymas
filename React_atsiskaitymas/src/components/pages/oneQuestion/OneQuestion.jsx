@@ -24,6 +24,13 @@ const OneQuestion = () => {
     const {setQuestions, QuestionsActionTypes} = useContext(QuestionsContext);
     const { users, loggedInUser } = useContext(UsersContext);
     const { awnsers, setAwnsers, AwnsersActionTypes } = useContext(AwnsersContext);
+    const [likesCount, setLikesCount] = useState(question.likes || 0);
+    const Like = () => {
+        setLikesCount(likesCount + 1);
+    };
+    const Dislike = () => {
+        setLikesCount(likesCount - 1);
+    };
 
 
     useEffect(() => {
@@ -37,11 +44,11 @@ const OneQuestion = () => {
             })
     }, []);
 
-    const values = {
+    const AwnserValues = {
         awnser: ''
     };
 
-    const validationSchema = Yup.object({
+    const AwnserValidationSchema = Yup.object({
         awnser: Yup.string()
             .max(500, "maximum 500 symbols for questions name")
             .required("This field must be filled")
@@ -49,8 +56,8 @@ const OneQuestion = () => {
     });
 
     const formik = useFormik({
-        initialValues: values,
-        validationSchema: validationSchema,
+        initialValues: AwnserValues,
+        validationSchema: AwnserValidationSchema,
         onSubmit: (values) => {
             const finalValues = {
                 id: uuid(),
@@ -58,7 +65,7 @@ const OneQuestion = () => {
                 questionId: question.id,
                 creatorUserName: loggedInUser.userName,
                 ...values,
-                likes: '',
+                likes: 0,
                 edited: false,
                 modified: ''
             }
@@ -75,6 +82,11 @@ const OneQuestion = () => {
         question &&
         <StyledQuestionPage>
             <div>
+                <div>
+                    <button onClick={Like}>Like</button>
+                    <button onClick={Dislike}>Dislike</button>
+                    <span>Likes: {likesCount}</span>
+                </div>
                 <h1>{question.name}</h1>
                 <p>{question.question}</p>
             </div>
@@ -107,16 +119,6 @@ const OneQuestion = () => {
             </div>
             <div>
                 {
-                    awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
-                        return <AwnserBox
-                            key = {awnser.id}
-                            data = {awnser}
-                        />
-                    })
-                }
-            </div>
-            <div>
-                {
                     loggedInUser ? 
                     <form onSubmit={formik.handleSubmit}>
                         <div>
@@ -139,6 +141,16 @@ const OneQuestion = () => {
                     </form>
                     :
                     <p>You need to sign in or sign up to awnser questions</p>
+                }
+            </div>
+            <div>
+                {
+                    awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
+                        return <AwnserBox
+                            key = {awnser.id}
+                            data = {awnser}
+                        />
+                    })
                 }
             </div>
         </StyledQuestionPage>
