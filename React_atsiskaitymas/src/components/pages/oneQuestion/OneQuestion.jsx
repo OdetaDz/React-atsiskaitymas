@@ -21,18 +21,11 @@ const OneQuestion = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [question, setQuestion] = useState('');
-    const {setQuestions, QuestionsActionTypes} = useContext(QuestionsContext);
+    const { dispatchQuestions, QuestionsActionTypes } = useContext(QuestionsContext);
     const { users, loggedInUser } = useContext(UsersContext);
     const { awnsers, setAwnsers, AwnsersActionTypes } = useContext(AwnsersContext);
-    const [likesCount, setLikesCount] = useState(question.likes || 0);
-    const Like = () => {
-        setLikesCount(likesCount + 1);
-    };
-    const Dislike = () => {
-        setLikesCount(likesCount - 1);
-    };
-
-
+    const [likesCount, setLikesCount] = useState('');
+    
     useEffect(() => {
         fetch(`http://localhost:8081/questions/${id}`)
             .then(res => res.json())
@@ -76,7 +69,38 @@ const OneQuestion = () => {
             formik.resetForm();
             
         }
-    })
+    });
+
+    const Like = () => {
+        const newLikesCount = question.likes + 1;
+        setLikesCount(newLikesCount);
+        fetch(`http://localhost:8081/questions/${question.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ likes: newLikesCount }),
+        });
+        setQuestion((prevQuestionData) => ({
+            ...prevQuestionData,
+            likes: newLikesCount,
+          }));
+      };
+      const Dislike = () => {
+        const newLikesCount = question.likes - 1;
+        setLikesCount(newLikesCount);
+        fetch(`http://localhost:8081/questions/${question.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ likes: newLikesCount }),
+        });
+        setQuestion((prevQuestionData) => ({
+            ...prevQuestionData,
+            likes: newLikesCount,
+          }));
+      };
 
     return ( 
         question &&
@@ -85,7 +109,7 @@ const OneQuestion = () => {
                 <div>
                     <button onClick={Like}>Like</button>
                     <button onClick={Dislike}>Dislike</button>
-                    <span>Likes: {likesCount}</span>
+                    <span>Likes: {question.likes}</span>
                 </div>
                 <h1>{question.name}</h1>
                 <p>{question.question}</p>
@@ -109,7 +133,7 @@ const OneQuestion = () => {
                             >Edit</button>
                             <button
                                 onClick={() => {
-                                    setQuestions({ type: QuestionsActionTypes.delete, id: id});
+                                    dispatchQuestions({ type: QuestionsActionTypes.delete, id: id });
                                     navigate("/questions/allQuestions")
                                 }}
                             >Delete</button>
