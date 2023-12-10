@@ -67,7 +67,7 @@ const StyledQuestionDiv = styled.div`
             font-size: 0.8rem;
             color: #8e9aaf;
             padding-right: 10px;
-            font-family: 'Kalnia'
+            font-family: 'Kalnia';
         }
     }
 `;
