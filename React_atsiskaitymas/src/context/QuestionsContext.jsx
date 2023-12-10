@@ -6,10 +6,7 @@ const QuestionsActionTypes = {
     get_all: 'get all the questions from data',
     add: 'add a new one question',
     delete: 'remove one specific question',
-    edit: 'edit one specific question',
-    upvote: 'increment the likes for the specific question',
-    downvote: 'decrement the likes for the specific question'
-
+    edit: 'edit one specific question'
 };
 
 const reducer = (state, action) => {
@@ -55,7 +52,6 @@ const reducer = (state, action) => {
 const QuestionsProvider = ({ children }) => {
 
     const [questions, setQuestions] = useReducer(reducer, []);
-    const dispatchQuestions = (action) => setQuestions(action);
     
     useEffect(() => {
         fetch(`http://localhost:8081/questions`)
@@ -72,7 +68,6 @@ const QuestionsProvider = ({ children }) => {
             value={{
                 questions,
                 setQuestions,
-                dispatchQuestions,
                 QuestionsActionTypes
             }}
         >
