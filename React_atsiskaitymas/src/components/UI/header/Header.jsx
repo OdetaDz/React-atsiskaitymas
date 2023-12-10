@@ -13,14 +13,33 @@ const StyledHeader = styled.header`
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     padding: 0 20px;
+    background-color: #cbc0d3;
 
-    div.logo > img{
-        height: 90px;
+    div.logo > a{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        color: black;
+
+        img{
+        height: 70px;
+        object-fit: contain;
+        padding-left: 40px;
+        }
+
+        span{
+            padding-left: 20px;
+            font-family: 'Kalnia';
+
+            b{
+                font-weight: 700;
+            }
+        }
     }
 
     a.active{
-        background-color: #ffc0cb88;
-        border-radius: 5px;
+        text-decoration: underline;
     }
     nav{
         display: flex;
@@ -39,7 +58,7 @@ const StyledHeader = styled.header`
                     color: black;
 
                     &:hover{
-                        background-color: #80008036;
+                        background-color: #8e9aaf9a;
                         border-radius: 5px;
                     }
                 }
@@ -69,7 +88,7 @@ const StyledHeader = styled.header`
                     display: block;
 
                     &:hover{
-                        background-color: #80008036;
+                        background-color: #8e9aaf9a;
                     }
                 }
             }
@@ -92,6 +111,8 @@ const StyledHeader = styled.header`
 
             span:nth-child(2){
                 font-weight: 600;
+                padding: 0 10px;
+                font-family: 'Kalnia';
             }
 
             span:nth-child(3){
@@ -101,7 +122,7 @@ const StyledHeader = styled.header`
                 padding: 5px 10px;
 
                 &:hover{
-                        background-color: #80008036;
+                        background-color: #8e9aaf9a;
                         cursor: pointer;
                     }
             }
@@ -117,7 +138,10 @@ const Header = () => {
     return ( 
         <StyledHeader>
             <div className="logo">
-                <img src="https://i.pinimg.com/736x/c3/2c/a8/c32ca8188b7fd323fa153959d92fd453.jpg" alt="cat logo"/>
+                <Link to="/">
+                    <img src="https://static.thenounproject.com/png/1179223-200.png" alt="cat in a box logo"/>
+                    <span><b>C</b>h<b>AT</b> in a box</span>
+                </Link>
             </div>
             <nav>
                 <ul>
