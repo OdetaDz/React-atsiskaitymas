@@ -58,9 +58,9 @@ const OneQuestion = () => {
                 questionId: question.id,
                 creatorUserName: loggedInUser.userName,
                 ...values,
-                likes: 0,
                 edited: false,
-                modified: ''
+                modified: '',
+                likes: 0
             }
             setAwnsers({
                 type: AwnsersActionTypes.add,
@@ -107,8 +107,13 @@ const OneQuestion = () => {
         <StyledQuestionPage>
             <div>
                 <div>
-                    <button onClick={Like}>Like</button>
-                    <button onClick={Dislike}>Dislike</button>
+                    {
+                        loggedInUser &&
+                        <>
+                            <span onClick={Like}><i className="bi bi-hand-thumbs-up"></i></span>
+                            <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
+                        </>
+                    }
                     <span>Likes: {question.likes}</span>
                 </div>
                 <h1>{question.name}</h1>
