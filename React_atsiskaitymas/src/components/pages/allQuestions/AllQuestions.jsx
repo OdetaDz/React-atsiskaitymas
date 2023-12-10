@@ -3,7 +3,6 @@ import QuestionsContext from "../../../context/QuestionsContext"
 import OneQuestionCard from "../../UI/oneQuestionCard/OneQuestionCard";
 import styled from "styled-components";
 import UsersContext from "../../../context/UserContext";
-import AwnsersContext from "../../../context/AwnsersContext";
 import { Link } from "react-router-dom";
 
 
@@ -27,8 +26,7 @@ const StyledQuetionsMain = styled.main`
 const AllQuestions = () => {
 
     const { questions } = useContext(QuestionsContext);
-    const { loggedInUser, users } = useContext(UsersContext);
-    const { awnsers } = useContext(AwnsersContext);
+    const { loggedInUser } = useContext(UsersContext);
     const [ sortByDate, setSortByDate ] = useState(false);
 
     return ( 
@@ -40,10 +38,10 @@ const AllQuestions = () => {
                 </Link>
             }
             <div>
-                <span>Sort:</span>
+                <span>Sort by:</span>
                 <button
                     onClick={() => {setSortByDate(!sortByDate)}}
-                >By {sortByDate ? "Oldest" : "Newest"}</button>
+                >{sortByDate ? "Oldest" : "Newest"}</button>
             </div>
             <div className="questions">
                 {

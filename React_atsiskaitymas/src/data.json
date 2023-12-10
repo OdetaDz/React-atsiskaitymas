@@ -46,13 +46,12 @@
     {
       "id": 1,
       "creatorId": 2,
-      "name": "Why this and not that?",
-      "question": "why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why why",
-      "created": "2023-12-05",
-      "comments": 0,
+      "name": "Cats?",
+      "question": "Cats are always awsome, aren't they? if not, tell my why not?",
+      "created": "2023-12-04",
       "edited": false,
       "modified": "",
-      "likes": 0
+      "likes": 10
     },
     {
       "id": 2,
@@ -62,7 +61,7 @@
       "created": "2023-12-03",
       "edited": false,
       "modified": "",
-      "likes": 0
+      "likes": 4
     },
     {
       "id": 3,
@@ -102,9 +101,9 @@
       "creatorId": 3,
       "creatorUserName": "CurageTCD",
       "awnser": "Am I your fire? Your one desire Yes, I know it's too late But I want it that way",
-      "likes": "",
       "edited": true,
-      "modified": "2023-12-05"
+      "modified": "2023-12-05",
+      "likes": ""
     },
     {
       "id": "79f1d38d-b56b-4814-b095-11ee6bcecf67",
@@ -112,9 +111,9 @@
       "questionId": 2,
       "creatorUserName": "Admin",
       "awnser": "hello!♥3jdsncksjdcksjdcscsx",
-      "likes": "",
       "edited": true,
-      "modified": "2023-12-08"
+      "modified": "2023-12-08",
+      "likes": 0
     },
     {
       "id": "7aff52e2-81e1-4122-b4a7-594e7ab5087e",
@@ -122,9 +121,9 @@
       "questionId": 3,
       "creatorUserName": "Admin",
       "awnser": "why not?",
-      "likes": "",
       "edited": false,
-      "modified": ""
+      "modified": "",
+      "likes": 0
     },
     {
       "id": "8637b8cf-ed39-4f21-bab7-38f6c00015ce",
@@ -132,9 +131,9 @@
       "questionId": 4,
       "creatorUserName": "Admin",
       "awnser": "hello",
-      "likes": 0,
       "edited": false,
-      "modified": ""
+      "modified": "",
+      "likes": 0
     },
     {
       "id": "e9a7bccd-5f5b-4052-bb99-41193cf8ee65",
@@ -142,19 +141,19 @@
       "questionId": 4,
       "creatorUserName": "Admin",
       "awnser": "hi",
-      "likes": 0,
       "edited": false,
-      "modified": ""
+      "modified": "",
+      "likes": 0
     },
     {
       "id": "9b91a160-89f5-444c-a784-6cc8eb529bc5",
       "creatorId": 1,
       "questionId": 1,
       "creatorUserName": "Admin",
-      "awnser": "Well why not? :D",
-      "likes": 0,
-      "edited": false,
-      "modified": ""
+      "awnser": "Well why not? :Dkjnsdknvsd1516513",
+      "edited": true,
+      "modified": "2023-12-10",
+      "likes": 19
     }
   ]
 }
