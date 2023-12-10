@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import UsersContext from "../../../context/UserContext";
 import AwnsersContext from "../../../context/AwnsersContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -11,10 +11,11 @@ import styled from "styled-components";
 const AwnserBox = ({ data }) => {
 
     const { loggedInUser } = useContext(UsersContext);
-    const { setAwnsers, AwnsersActionTypes } = useContext(AwnsersContext);
+    const { awnsers, setAwnsers, AwnsersActionTypes } = useContext(AwnsersContext);
+    const [ awnser, setAwnser] = useState('');
     const navigate = useNavigate();
-    const { id } = useParams();
     const [ editClick, setEditClick ] = useState(false);
+    const [likesCount, setLikesCount] = useState('');
     const [ formValues, setFormValues ] = useState({
         awnser: ''
     });
@@ -26,6 +27,7 @@ const AwnserBox = ({ data }) => {
                 if(!data.awnser){
                     navigate('/');
                 }
+                setAwnser(data);
                 setFormValues({
                     ...data
                 });
@@ -39,32 +41,83 @@ const AwnserBox = ({ data }) => {
             .trim()
     });
 
+    const Like = () => {
+            const newLikesCount = ++data.likes;
+      
+            fetch(`http://localhost:8081/awnsers/${data.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ likes: newLikesCount }),
+            })
+                .then(res => res.json)
+                .then(updatedAwnser => {
+                    setAwnser((prevData) => ({
+                        ...prevData,
+                        likes: updatedAwnser.likes,
+                    }));
+                })
+        };
+      
+      const Dislike = () => {
+        const newLikesCount = --data.likes;
+      
+        fetch(`http://localhost:8081/awnsers/${data.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ likes: newLikesCount }),
+        })
+        .then(res => res.json)
+                .then(updatedAwnser => {
+                    setAwnser((prevData) => ({
+                        ...prevData,
+                        likes: updatedAwnser.likes,
+                    }));
+                })
+      };
+
     return ( 
         <div>
             <p>{data.awnser}</p>
             <div>
-                {
-                    data.edited ? <span>Edited: {data.modified}</span> : <span style={{width: "75px"}}></span>
-                }
+                <div>
+                    {
+                        data.edited ? <span>Edited: {data.modified}</span> : <span style={{width: "75px"}}></span>
+                    }
                 <span>{data.creatorUserName}</span>
-                {
-                    loggedInUser.id === data.creatorId &&
+                </div>
+                <div>
                     <div>
-                        <button
-                            onClick={() => 
+                    {
+                        loggedInUser &&
+                        <>
+                            <button onClick={Like}><i className="bi bi-hand-thumbs-up"></i></button>
+                            <button onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></button>
+                        </>
+                    }
+                    <span>Likes: {data.likes}</span>
+                    </div>
+                    {
+                        loggedInUser.id === data.creatorId &&
+                        <div>
+                            <button
+                                onClick={() => 
                                 setEditClick(true)
-                            }
-                        >Edit</button>
-                        
-                        <button
-                            onClick={() => {
+                                }
+                            >Edit</button>
+                            <button
+                                onClick={() => {
                                 setAwnsers({ type: AwnsersActionTypes.delete, 
                                     id: data.id});
                                     navigate(`/questions/${data.questionId}`)
-                            }}
-                        >Delete</button>
-                    </div>
-                }
+                                }}
+                            >Delete</button>
+                        </div>
+                    }
+                </div>
                 {
                     editClick && 
                     <div>
