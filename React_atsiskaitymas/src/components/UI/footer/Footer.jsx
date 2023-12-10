@@ -7,12 +7,15 @@ const StyledFooter = styled.footer`
     justify-content: center;
     align-items: center;
     border-top: 1px solid black;
-`
+    font-family: 'Kalnia';
+    font-size: 0.8rem;
+    background-color: #cbc0d3;
+`;
 
 const Footer = () => {
     return ( 
         <StyledFooter>
-            <p>&copy; {new Date().getFullYear()} by Odeta Džiugytė</p>
+            <p>&copy; {new Date().getFullYear()} ChAT in box</p>
         </StyledFooter>
      );
 }
