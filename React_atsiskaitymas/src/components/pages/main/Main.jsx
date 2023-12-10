@@ -3,23 +3,27 @@ import styled from "styled-components";
 const StyledMain = styled.main`
     height: calc(100vh - 200px);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.1222169770.1701648000&semt=sph');
-    background-color: #ffffff44;
-    background-blend-mode: overlay;
-    background-size: cover;
+    background-color: #eee3e48b;
     background-position: center;
 
-    h1{
-        text-align: center;
+    h4, p{
+        font-size: 1.3rem;
     }
-`
+    img {
+        height: 200px;
+    }
+`;
 
 const Main = () => {
     return ( 
         <StyledMain>
-            <h1>Do you have any questions about life? Ask them here and get your awnsers....</h1>
+            <h4>"ChAT in a box" is a place where you can ask all the questions that you have...</h4>
+            <p>Ask away and get response from others...</p>
+            <img src="https://cdn.icon-icons.com/icons2/3546/PNG/512/cat_support_mark_question_icon_224690.png" alt="question cat"/>
+
         </StyledMain>
      );
 }
