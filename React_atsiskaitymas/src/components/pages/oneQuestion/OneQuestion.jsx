@@ -15,7 +15,121 @@ const StyledQuestionPage = styled.main`
     align-items: center;
     width: 100%;
     min-height: calc(100vh - 200px);
-`
+    background-color: #eee3e48b;
+
+    > div.questionPart {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+
+        > h1{
+            font-family: 'Kalnia';
+            font-weight: 500;
+        }
+        
+        > div.likeDislike{
+            display: flex;
+            gap: 5px;
+            padding-top: 10px;
+
+            > span:nth-child(1){
+                font-size: 1.2rem;
+
+                &:hover{
+                    cursor: pointer;
+                    color: #008000c1;
+                }
+            }
+
+            > span:nth-child(2){
+                font-size: 1.2rem;
+            
+                &:hover{
+                    cursor: pointer;
+                    color: #da1a1ac1;
+                }
+            }
+
+            > span:nth-child(3){
+                font-size: 1.2rem;
+            }
+        }
+
+        > div.editedAndUser{
+            align-self: flex-end;
+            color: #8e9aaf;
+            
+            > span:nth-child(2){
+                padding-left: 10px;
+            }
+        }
+
+        > div.editDelete{
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #36363657;
+            padding-bottom: 15px;
+
+            > button{
+                border: 1px solid #39393936;
+                border-radius: 10px;
+                padding: 5px 10px;
+                background-color: #cbc0d3a2;
+
+                &:hover{
+                    background-color: #8e9aaf9a;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    > div.addAwnser{
+        padding: 10px 0;
+
+        > form {
+            display: flex;
+            flex-direction: column;
+
+            > div > textarea{
+                width: 500px;
+                height: 70px;
+                border: 1px solid #36363657;
+                border-radius: 5px;
+            }
+            
+            > button{
+                align-self: center;
+                border: 1px solid #39393936;
+                border-radius: 10px;
+                padding: 5px 10px;
+                background-color: #cbc0d3a2;
+
+                &:hover{
+                    background-color: #8e9aaf9a;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        > p{
+            font-family: 'Kalnia'; 
+        }
+    }
+
+    > div.placefiller{
+        height: 1px;
+        width: 80%;
+        border-bottom: 1px solid #36363657;
+    }
+    > div.awnsers{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    
+`;
 const OneQuestion = () => {
 
     const { id } = useParams();
@@ -80,7 +194,7 @@ const OneQuestion = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ likes: newLikesCount }),
-        });
+        })
         setQuestion((prevQuestionData) => ({
             ...prevQuestionData,
             likes: newLikesCount,
@@ -105,8 +219,8 @@ const OneQuestion = () => {
     return ( 
         question &&
         <StyledQuestionPage>
-            <div>
-                <div>
+            <div className="questionPart">
+                <div className="likeDislike">
                     {
                         loggedInUser &&
                         <>
@@ -118,35 +232,35 @@ const OneQuestion = () => {
                 </div>
                 <h1>{question.name}</h1>
                 <p>{question.question}</p>
-            </div>
-            <div>
-                {
-                    question.edited ? <span>edited: {question.modified}</span> : <span style={{width: "75px"}}></span>
-                }
-                {
-                    users.filter(user => user.id === question.creatorId).map(user => {
-                        return <span>{user.userName}</span>
-                    }) 
-                }
-            </div>
-            <div>
-                {
-                    loggedInUser && question.creatorId === loggedInUser.id ?
-                        <>
-                            <button
-                                onClick={() => navigate(`/questions/edit/${id}`)}
-                            >Edit</button>
-                            <button
-                                onClick={() => {
-                                    dispatchQuestions({ type: QuestionsActionTypes.delete, id: id });
-                                    navigate("/questions/allQuestions")
-                                }}
-                            >Delete</button>
-                        </> :
-                        ''
+                <div className="editedAndUser">
+                    {
+                        question.edited ? <span>edited: {question.modified}</span> : <span style={{width: "75px"}}></span>
                     }
+                    {
+                        users.filter(user => user.id === question.creatorId).map(user => {
+                        return <span>{user.userName}</span>
+                        }) 
+                    }
+                </div>
+                <div className="editDelete">
+                    {
+                        loggedInUser && question.creatorId === loggedInUser.id ?
+                            <>
+                                <button
+                                    onClick={() => navigate(`/questions/edit/${id}`)}
+                                >Edit</button>
+                                <button
+                                    onClick={() => {
+                                        dispatchQuestions({ type: QuestionsActionTypes.delete, id: id });
+                                        navigate("/questions/allQuestions")
+                                    }}
+                                >Delete</button>
+                            </> :
+                                ''
+                    }
+                </div>
             </div>
-            <div>
+            <div className="addAwnser">
                 {
                     loggedInUser ? 
                     <form onSubmit={formik.handleSubmit}>
@@ -169,10 +283,11 @@ const OneQuestion = () => {
                         >Add awnser</button>
                     </form>
                     :
-                    <p>You need to sign in or sign up to awnser questions</p>
+                    <p>You need to sign in or sign up to awnser questions :)</p>
                 }
             </div>
-            <div>
+            <div className="placefiller"></div>
+            <div className="awnsers">
                 {
                     awnsers.filter(awnser => awnser.questionId === question.id).map(awnser => {
                         return <AwnserBox
