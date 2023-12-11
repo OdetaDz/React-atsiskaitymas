@@ -35,7 +35,7 @@ const StyledAddQuestion = styled.main`
 
                 > input{
                     height: 30px;
-                    background-color: #8e9aaf5b;
+                    background-color: #ffffffc0;
                     border: 1px solid #39393936;
                     border-radius: 10px;
                 }
@@ -44,7 +44,7 @@ const StyledAddQuestion = styled.main`
                     height: 70px;
                     border: 1px solid #36363657;
                     border-radius: 10px;
-                    background-color: #8e9aaf5b;
+                    background-color: #ffffffc0;
                 }
             }
             > div:nth-child(2){
