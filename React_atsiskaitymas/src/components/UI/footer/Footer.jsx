@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
     border-top: 1px solid black;
     font-family: 'Kalnia';
     font-size: 0.8rem;
-    background-color: #cbc0d3;
+    background-color: #cbc0d3a2;
 `;
 
 const Footer = () => {
