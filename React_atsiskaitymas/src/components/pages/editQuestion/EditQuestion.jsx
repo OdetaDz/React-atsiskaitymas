@@ -6,6 +6,68 @@ import { useContext, useEffect, useState } from "react";
 import QuestionsContext from "../../../context/QuestionsContext";
 import { useNavigate, useParams } from "react-router-dom";
 
+const StyledQuestionEdit = styled.main`
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eee3e48b;
+
+    > h1{
+        font-family: 'Kalnia';
+        font-weight: 600;
+    }
+
+    > form{
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 600px;
+
+        > div:nth-child(1){
+
+            > div:nth-child(1){
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+
+                > input{
+                    height: 30px;
+                    background-color: #8e9aaf5b;
+                    border: 1px solid #39393936;
+                    border-radius: 10px;
+                }
+            }
+        }
+
+        > div:nth-child(2){
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+
+            > textarea{
+                height: 70px;
+                border: 1px solid #36363657;
+                border-radius: 10px;
+                background-color: #8e9aaf5b;
+            }
+        }
+
+        > button{
+            border: 1px solid #39393936;
+            border-radius: 10px;
+            padding: 5px 10px;
+            background-color: #cbc0d3a2;
+            width: 100px;
+            align-self: center;
+
+            &:hover{
+                background-color: #8e9aaf9a;
+                cursor: pointer;
+            }
+        }
+    }
+`;
+
 const EditQuestion = () => {
 
     const { setQuestions, QuestionsActionTypes } = useContext(QuestionsContext);
@@ -40,7 +102,7 @@ const EditQuestion = () => {
     });
 
     return (
-        <main>
+        <StyledQuestionEdit>
             <h1>Edit your question</h1>
             {
                 formValues.name && <Formik
@@ -68,18 +130,25 @@ const EditQuestion = () => {
                                 formik={props}
                             >
                             </FormikInput>
-                            <FormikInput
-                                type="text"
+                            <div>
+                                <label for="question">Question:</label>
+                                <textarea
                                 name="question"
+                                id="question"
+                                value={props.values.question}
+                                onChange={props.handleChange}
+                                onBlur={props.handleBlur}
+                                placeholder="Edit your question here..."
                                 formik={props}
                             >
-                            </FormikInput>
+                            </textarea>
+                            </div>
                             <button type="submit">Edit</button>
                         </form>
                     )}
                 </Formik>
             }
-        </main>
+        </StyledQuestionEdit>
     );
 }             
 
