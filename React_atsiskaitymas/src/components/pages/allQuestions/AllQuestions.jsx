@@ -3,6 +3,7 @@ import QuestionsContext from "../../../context/QuestionsContext"
 import OneQuestionCard from "../../UI/oneQuestionCard/OneQuestionCard";
 import styled from "styled-components";
 import UsersContext from "../../../context/UserContext";
+import AwnsersContext from "../../../context/AwnsersContext";
 import { Link } from "react-router-dom";
 
 
@@ -43,26 +44,30 @@ const StyledQuetionsMain = styled.main`
         }
     }
 
-    > div.sort{
+    > div.sortFilter{
         width: 80%;
         justify-self: start;
         margin-bottom: 7px;
+        display: flex;
+        justify-content: space-between;
 
-        > span{
-            padding-right: 15px;
-            font-family: 'Kalnia';
-            font-weight: 500;
-        }
+        > div{
+            > span{
+                padding-right: 15px;
+                font-family: 'Kalnia';
+                font-weight: 500;
+            }
 
-        > button{
-            border: 1px solid #39393936;
-            border-radius: 10px;
-            padding: 5px 10px;
-            background-color: #cbc0d3a2;
+            > button{
+                border: 1px solid #39393936;
+                border-radius: 10px;
+                padding: 5px 10px;
+                background-color: #cbc0d3a2;
 
-            &:hover{
-                background-color: #8e9aaf9a;
-                cursor: pointer;
+                &:hover{
+                    background-color: #8e9aaf9a;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -81,7 +86,19 @@ const AllQuestions = () => {
 
     const { questions } = useContext(QuestionsContext);
     const { loggedInUser } = useContext(UsersContext);
+    const { awnsers } = useContext(AwnsersContext);
     const [ sortByDate, setSortByDate ] = useState(false);
+    const [filterByComments, setFilterByComments] = useState(false);
+    const handleFilterComments = () => {
+        setFilterByComments(!filterByComments);
+    };
+    const filteredQuestions = () => {
+        if (filterByComments) {
+            return questions.filter(question => awnsers.some(awnser => awnser.questionId === question.id));
+        } else {
+            return questions;
+        }
+    };
 
     return ( 
         <StyledQuetionsMain>
@@ -93,23 +110,29 @@ const AllQuestions = () => {
                     </div>
                 
             }
-            <div className="sort">
-                <span>Sort by:</span>
-                <button
-                    onClick={() => {setSortByDate(!sortByDate)}}
-                >{sortByDate ? "Oldest" : "Newest"}</button>
+            <div className="sortFilter">
+                <div>
+                    <span>Show:</span>
+                    <button onClick={handleFilterComments}>{filterByComments ? "All" : "Only with comments"}</button>
+                </div>
+                <div>
+                    <span>Sort by:</span>
+                    <button
+                        onClick={() => {setSortByDate(!sortByDate)}}
+                    >{sortByDate ? "Unsorted" : "Newest"}</button>
+                </div>
             </div>
             <div className="questions">
                 {
                     sortByDate ? 
-                    questions.slice().sort((a, b) => new Date(a.created) - new Date(b.created)).map(question => (
+                    filteredQuestions().slice().sort((a, b) => new Date(a.created) - new Date(b.created)).map(question => (
                         <OneQuestionCard
                             key={question.id}
                             data={question}
                         />
                     ))
                     :
-                    questions.map(question => {
+                    filteredQuestions().map(question => {
                         return <OneQuestionCard
                             key = {question.id}
                             data = {question}
