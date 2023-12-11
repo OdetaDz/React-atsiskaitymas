@@ -7,6 +7,64 @@ import UsersContext from "../../../context/UserContext";
 import FormikInput from "../../UI/formikInput/FormikInput";
 import bcrypt from "bcryptjs";
 
+const StyledLoginMain = styled.main`
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eee3e48b;
+
+    > h1{
+        font-family: 'Kalnia';
+        font-weight: 600;
+    }
+
+    > form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        > div{
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+
+            > div:nth-child(1){
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 5px;
+
+                > input{
+                    height: 30px;
+                    background-color: #8e9aaf5b;
+                    border: 1px solid #39393936;
+                    border-radius: 10px;
+                }
+            }
+
+            > div:nth-child(2){
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        > button{
+            border: 1px solid #39393936;
+            border-radius: 10px;
+            padding: 5px 10px;
+            background-color: #cbc0d3a2;
+            width: 100px;
+            align-self: center;
+
+            &:hover{
+                background-color: #8e9aaf9a;
+                cursor: pointer;
+            }
+        }
+    }
+`;
 const LogIn = () => {
 
     const navigate = useNavigate();
@@ -44,7 +102,7 @@ const LogIn = () => {
       });
 
     return ( 
-        <main>
+        <StyledLoginMain>
             <h1>Log In</h1>
             <form onSubmit={formik.handleSubmit}>
                 <FormikInput
@@ -64,7 +122,7 @@ const LogIn = () => {
             {
                 failedToLogin && <p>No user with such credentials</p>
             }
-        </main>
+        </StyledLoginMain>
      );
 }
  
