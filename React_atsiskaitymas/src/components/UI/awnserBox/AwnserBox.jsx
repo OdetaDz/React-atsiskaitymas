@@ -53,7 +53,7 @@ const StyledAwnserBox = styled.div`
                 display: flex;
                 gap: 8px;
 
-                > span:nth-child(1){
+                > span:nth-child(2){
                     font-size: 1.1rem;
 
                     &:hover{
@@ -62,7 +62,7 @@ const StyledAwnserBox = styled.div`
                     }
                 }
 
-                > span:nth-child(2){
+                > span:nth-child(3){
                     font-size: 1.1rem;
 
                     &:hover{
@@ -211,14 +211,14 @@ const AwnserBox = ({ data }) => {
                 </div>
                 <div className="likesAndCreatorsButtons">
                     <div className="likesDislikes">
-                    {
-                        loggedInUser &&
-                        <>
-                            <span onClick={Like}><i className="bi bi-hand-thumbs-up"></i></span>
-                            <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
-                        </>
-                    }
-                    <span>Likes: {data.likes}</span>
+                        <span>Likes: {data.likes}</span>
+                        {
+                            loggedInUser &&
+                                <>
+                                    <span onClick={Like}><i className="bi bi-hand-thumbs-up"></i></span>
+                                    <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
+                                </>
+                        }
                     </div>
                     {
                         loggedInUser.id === data.creatorId &&

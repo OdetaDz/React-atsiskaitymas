@@ -31,7 +31,7 @@ const StyledQuestionPage = styled.main`
                 display: flex;
                 gap: 5px;
 
-                > span:nth-child(1){
+                > span:nth-child(2){
                     font-size: 1.2rem;
 
                     &:hover{
@@ -40,7 +40,7 @@ const StyledQuestionPage = styled.main`
                     }
                 }
 
-                > span:nth-child(2){
+                > span:nth-child(3){
                     font-size: 1.2rem;
             
                     &:hover{
@@ -239,6 +239,7 @@ const OneQuestion = () => {
             <div className="questionPart">
                 <div className="likesAndDate">
                     <div className="likeDislike">
+                        <span>Likes: {question.likes}</span>
                         {
                             loggedInUser &&
                                 <>
@@ -246,7 +247,6 @@ const OneQuestion = () => {
                                     <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
                                 </>
                         }
-                        <span>Likes: {question.likes}</span>
                     </div>
                 <div className="date">
                     <span>Asked: {question.created}</span>
