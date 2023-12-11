@@ -13,26 +13,26 @@ const StyledHeader = styled.header`
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     padding: 0 20px;
-    background-color: #cbc0d3;
+    background-color: #cbc0d3a2;
 
-    div.logo > a{
+    > div.logo > a{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         text-decoration: none;
         color: black;
 
-        img{
+        > img{
         height: 70px;
         object-fit: contain;
         padding-left: 40px;
         }
 
-        span{
+        > span{
             padding-left: 20px;
             font-family: 'Kalnia';
 
-            b{
+            > b{
                 font-weight: 700;
             }
         }
@@ -56,10 +56,11 @@ const StyledHeader = styled.header`
                     text-decoration: none;
                     padding: 5px 10px;
                     color: black;
+                    font-family: 'Kalnia';
 
                     &:hover{
                         background-color: #8e9aaf9a;
-                        border-radius: 5px;
+                        border-radius: 10px;
                     }
                 }
             }
