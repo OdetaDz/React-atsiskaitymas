@@ -25,7 +25,7 @@ const StyledQuestionEdit = styled.main`
         gap: 10px;
         width: 600px;
 
-        > div:nth-child(1){
+        > div{ 
 
             > div:nth-child(1){
                 display: grid;
@@ -37,20 +37,21 @@ const StyledQuestionEdit = styled.main`
                     border: 1px solid #39393936;
                     border-radius: 10px;
                 }
+
+                > textarea{
+                    height: 70px;
+                    border: 1px solid #36363657;
+                    border-radius: 10px;
+                    background-color: #8e9aaf5b;
+                }
+            }
+            > div:nth-child(2){
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
-
-        > div:nth-child(2){
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-
-            > textarea{
-                height: 70px;
-                border: 1px solid #36363657;
-                border-radius: 10px;
-                background-color: #8e9aaf5b;
-            }
-        }
+        
 
         > button{
             border: 1px solid #39393936;
@@ -131,17 +132,26 @@ const EditQuestion = () => {
                             >
                             </FormikInput>
                             <div>
-                                <label for="question">Question:</label>
-                                <textarea
-                                name="question"
-                                id="question"
-                                value={props.values.question}
-                                onChange={props.handleChange}
-                                onBlur={props.handleBlur}
-                                placeholder="Edit your question here..."
-                                formik={props}
-                            >
-                            </textarea>
+                                <div>
+                                    <label for="question">Question:</label>
+                                    <textarea
+                                        name="question"
+                                        id="question"
+                                        value={props.values.question}
+                                        onChange={props.handleChange}
+                                        onBlur={props.handleBlur}
+                                        placeholder="Edit your question here..."
+                                    >
+                                    </textarea>
+                                </div>
+                                <div>
+                                    {
+                                        props.touched.question && props.errors.question && 
+                                        <div>
+                                            <p style={{ color: "red"}}>{props.errors.question}</p>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                             <button type="submit">Edit</button>
                         </form>
