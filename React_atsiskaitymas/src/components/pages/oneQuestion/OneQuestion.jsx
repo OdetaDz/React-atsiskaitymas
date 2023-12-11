@@ -22,38 +22,54 @@ const StyledQuestionPage = styled.main`
         flex-direction: column;
         width: 80%;
 
+        > div.likesAndDate{
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+
+            > div.likeDislike{
+                display: flex;
+                gap: 5px;
+
+                > span:nth-child(1){
+                    font-size: 1.2rem;
+
+                    &:hover{
+                        cursor: pointer;
+                        color: #008000c1;
+                    }
+                }
+
+                > span:nth-child(2){
+                    font-size: 1.2rem;
+            
+                    &:hover{
+                        cursor: pointer;
+                        color: #da1a1ac1;
+                    }
+                }
+
+                > span:nth-child(3){
+                    font-size: 1.2rem;
+                }
+            }
+
+            >div.date{
+
+                > span{
+                    color: #8e9aaf;
+                    font-family: 'Kalnia';
+                    font-size: 0.8rem;
+                }
+            }
+        }
+
         > h1{
             font-family: 'Kalnia';
             font-weight: 500;
         }
         
-        > div.likeDislike{
-            display: flex;
-            gap: 5px;
-            padding-top: 10px;
-
-            > span:nth-child(1){
-                font-size: 1.2rem;
-
-                &:hover{
-                    cursor: pointer;
-                    color: #008000c1;
-                }
-            }
-
-            > span:nth-child(2){
-                font-size: 1.2rem;
-            
-                &:hover{
-                    cursor: pointer;
-                    color: #da1a1ac1;
-                }
-            }
-
-            > span:nth-child(3){
-                font-size: 1.2rem;
-            }
-        }
+        
 
         > div.editedAndUser{
             align-self: flex-end;
@@ -90,6 +106,7 @@ const StyledQuestionPage = styled.main`
         > form {
             display: flex;
             flex-direction: column;
+            gap: 5px;
 
             > div > textarea{
                 width: 500px;
@@ -120,16 +137,16 @@ const StyledQuestionPage = styled.main`
     > div.placefiller{
         height: 1px;
         width: 80%;
-        border-bottom: 1px solid #36363657;
     }
     > div.awnsers{
         display: flex;
         flex-direction: column;
         gap: 10px;
-    }
-
-    
+        width: 80%;
+        margin-bottom: 10px;
+    }  
 `;
+
 const OneQuestion = () => {
 
     const { id } = useParams();
@@ -171,6 +188,7 @@ const OneQuestion = () => {
                 creatorId: loggedInUser.id,
                 questionId: question.id,
                 creatorUserName: loggedInUser.userName,
+                created: new Date().toISOString().slice(0,10),
                 ...values,
                 edited: false,
                 modified: '',
@@ -180,8 +198,7 @@ const OneQuestion = () => {
                 type: AwnsersActionTypes.add,
                 data: finalValues
             });
-            formik.resetForm();
-            
+            formik.resetForm();  
         }
     });
 
@@ -189,52 +206,57 @@ const OneQuestion = () => {
         const newLikesCount = question.likes + 1;
         setLikesCount(newLikesCount);
         fetch(`http://localhost:8081/questions/${question.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ likes: newLikesCount }),
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ likes: newLikesCount }),
         })
         setQuestion((prevQuestionData) => ({
             ...prevQuestionData,
             likes: newLikesCount,
-          }));
-      };
-      const Dislike = () => {
+        }));
+    };
+    const Dislike = () => {
         const newLikesCount = question.likes - 1;
         setLikesCount(newLikesCount);
         fetch(`http://localhost:8081/questions/${question.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ likes: newLikesCount }),
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+        },
+            body: JSON.stringify({ likes: newLikesCount }),
         });
         setQuestion((prevQuestionData) => ({
             ...prevQuestionData,
             likes: newLikesCount,
-          }));
-      };
+        }));
+    };
 
     return ( 
         question &&
         <StyledQuestionPage>
             <div className="questionPart">
-                <div className="likeDislike">
-                    {
-                        loggedInUser &&
-                        <>
-                            <span onClick={Like}><i className="bi bi-hand-thumbs-up"></i></span>
-                            <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
-                        </>
-                    }
-                    <span>Likes: {question.likes}</span>
+                <div className="likesAndDate">
+                    <div className="likeDislike">
+                        {
+                            loggedInUser &&
+                                <>
+                                    <span onClick={Like}><i className="bi bi-hand-thumbs-up"></i></span>
+                                    <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
+                                </>
+                        }
+                        <span>Likes: {question.likes}</span>
+                    </div>
+                <div className="date">
+                    <span>Asked: {question.created}</span>
+                </div>
                 </div>
                 <h1>{question.name}</h1>
                 <p>{question.question}</p>
                 <div className="editedAndUser">
                     {
-                        question.edited ? <span>edited: {question.modified}</span> : <span style={{width: "75px"}}></span>
+                        question.edited ? <span>Edited: {question.modified}</span> : <span style={{width: "75px"}}></span>
                     }
                     {
                         users.filter(user => user.id === question.creatorId).map(user => {

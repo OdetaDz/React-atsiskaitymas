@@ -94,7 +94,7 @@ const OneQuestionCard = ({ data }) => {
                 </div>
                 <div className="creator">
                     {
-                        data.edited ? <span>edited: {data.modified}</span> : <span style={{width: "75px"}}></span>
+                        data.edited ? <span>Edited: {data.modified}</span> : <span style={{width: "75px"}}></span>
                     }
                     {
                         users.filter(user => user.id === data.creatorId).map(user => {

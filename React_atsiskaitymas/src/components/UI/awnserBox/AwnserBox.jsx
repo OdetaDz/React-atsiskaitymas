@@ -6,7 +6,124 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
+const StyledAwnserBox = styled.div`
+    border: 1px solid #36363657;
+    border-radius: 10px;
+    box-shadow: 1px 2px#36363657;
+    background-color: #8e9aaf20;
+    padding: 10px;
 
+    > div.user{
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+
+        > span:nth-child(1){
+            color: #8e9aaf;
+            font-size: 0.8rem;
+        }
+
+        > span:nth-child(2){
+            color: #8e9aaf;
+            font-size: 0.8rem;
+            font-family: 'Kalnia';
+            padding-bottom: 5px;
+        }
+    }
+    > div{
+        
+        > div.creatorAndEdited{
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            gap: 5px;
+            
+            > span:nth-child(1){
+                color: #8e9aaf;
+                font-size: 0.8rem;
+            }
+        }
+
+        > div.likesAndCreatorsButtons{
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+
+            > div.likesDislikes{
+                display: flex;
+                gap: 8px;
+
+                > span:nth-child(1){
+                    font-size: 1.1rem;
+
+                    &:hover{
+                        cursor: pointer;
+                        color: #008000c1;
+                    }
+                }
+
+                > span:nth-child(2){
+                    font-size: 1.1rem;
+
+                    &:hover{
+                        cursor: pointer;
+                        color: #da1a1ac1;
+                    }
+                }
+
+                > span:nth-child(3){
+                    
+                }
+            }
+
+            > div.editDelete{
+                display: flex;
+                gap: 5px;
+
+                > button{
+                    border: 1px solid #39393936;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                    background-color: #cbc0d3a2;
+
+                    &:hover{
+                        background-color: #8e9aaf9a;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        > div.editForm{
+            > form{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                align-items: center;
+
+                > textarea{
+                    width: 60%;
+                    height: 70px;
+                    border: 1px solid #36363657;
+                    border-radius: 5px;
+                    background-color: #ffffff6b;
+                }
+
+                > button{
+                    border: 1px solid #39393936;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                    background-color: #cbc0d3a2;
+
+                    &:hover{
+                        background-color: #8e9aaf9a;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+`;
 
 const AwnserBox = ({ data }) => {
 
@@ -80,29 +197,32 @@ const AwnserBox = ({ data }) => {
       };
 
     return ( 
-        <div>
+        <StyledAwnserBox>
             <p>{data.awnser}</p>
+            <div className="user">
+                <span>Awnsered: {data.created}</span>
+                <span>{data.creatorUserName}</span>
+            </div>
             <div>
-                <div>
+                <div className="creatorAndEdited">
                     {
                         data.edited ? <span>Edited: {data.modified}</span> : <span style={{width: "75px"}}></span>
                     }
-                <span>{data.creatorUserName}</span>
                 </div>
-                <div>
-                    <div>
+                <div className="likesAndCreatorsButtons">
+                    <div className="likesDislikes">
                     {
                         loggedInUser &&
                         <>
-                            <button onClick={Like}><i className="bi bi-hand-thumbs-up"></i></button>
-                            <button onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></button>
+                            <span onClick={Like}><i className="bi bi-hand-thumbs-up"></i></span>
+                            <span onClick={Dislike}><i className="bi bi-hand-thumbs-down"></i></span>
                         </>
                     }
                     <span>Likes: {data.likes}</span>
                     </div>
                     {
                         loggedInUser.id === data.creatorId &&
-                        <div>
+                        <div className="editDelete">
                             <button
                                 onClick={() => 
                                 setEditClick(true)
@@ -120,7 +240,7 @@ const AwnserBox = ({ data }) => {
                 </div>
                 {
                     editClick && 
-                    <div>
+                    <div className="editForm">
         {
             formValues.awnser && <Formik
                     initialValues = {formValues}
@@ -159,8 +279,7 @@ const AwnserBox = ({ data }) => {
                 }
             
             </div>
-            <div></div>
-        </div>
+        </StyledAwnserBox>
      );
 }
  
