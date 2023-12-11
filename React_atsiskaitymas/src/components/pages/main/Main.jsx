@@ -7,7 +7,6 @@ const StyledMain = styled.main`
     justify-content: center;
     align-items: center;
     background-color: #eee3e48b;
-    background-position: center;
 
     > h4, p{
         font-size: 1.3rem;
