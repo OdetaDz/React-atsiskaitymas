@@ -8,12 +8,62 @@ import { v4 as uuid} from 'uuid';
 import bcrypt from 'bcryptjs';
 import FormikInput from "../../UI/formikInput/FormikInput";
 
-const Register = () => {
+const StyledRegisterMain = styled.main`
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eee3e48b;
 
-    // console.log('Admin', bcrypt.hashSync('Admin1@', 8));
-    // console.log('Cat123', bcrypt.hashSync('Cat1%', 8));
-    // console.log('CurageTCD', bcrypt.hashSync('Curage1*', 8));
-    // console.log('Pikachu', bcrypt.hashSync('Pikachu1+', 8));
+    > h1{
+        font-family: 'Kalnia';
+        font-weight: 600;
+    }
+
+    > form{
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        > div{
+            width: 450px;
+
+            > div:nth-child(1){
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+
+                > input{
+                    height: 30px;
+                    background-color: #8e9aaf5b;
+                    border: 1px solid #39393936;
+                    border-radius: 10px;
+                }
+            }
+
+            > div:nth-child(2){
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        > button{
+            border: 1px solid #39393936;
+            border-radius: 10px;
+            padding: 5px 10px;
+            background-color: #cbc0d3a2;
+            width: 100px;
+            align-self: center;
+
+            &:hover{
+                background-color: #8e9aaf9a;
+                cursor: pointer;
+            }
+        }
+    }
+`;
+const Register = () => {
 
     const navigate = useNavigate();
     const { users, setUsers, UsersActionTypes, setLoggedInUser } = useContext(UsersContext);
@@ -27,7 +77,7 @@ const Register = () => {
         email: '',
         password: '',
         passwordRepeat: '',
-        profilePicture: ''
+        avatar: ''
       };
 
       const validationSchema = Yup.object({
@@ -51,7 +101,7 @@ const Register = () => {
           .oneOf([Yup.ref('password')], 'Passwords must match')
           .required('Field must be filled')
           .trim(),
-        profilePicture: Yup.string()
+        avatar: Yup.string()
           .url('Field must be a valid URL')
           .required('Field must be filled')
           .trim()
@@ -100,7 +150,7 @@ const Register = () => {
                     passwordNormal: values.password,
                     password: bcrypt.hashSync(values.password, 8),
                     registerDate: new Date().toISOString().slice(0,10),
-                    profilePicture: values.profilePicture
+                    avatar: values.avatar
                 };
                 setUsers({
                     type: UsersActionTypes.add,
@@ -113,7 +163,7 @@ const Register = () => {
     });
 
     return ( 
-        <main>
+        <StyledRegisterMain>
             <h1>Register</h1>
             <form onSubmit={formik.handleSubmit}>
                 <FormikInput
@@ -142,7 +192,7 @@ const Register = () => {
                 />
                 <FormikInput
                     type="url"
-                    name="profilePicture"
+                    name="avatar"
                     formik={formik}
                     placeholder="Add your avatar picture URL..."
                 />
@@ -154,7 +204,7 @@ const Register = () => {
             {
                 failedToRegister.email && <p>{failedToRegister.email}</p>
             }
-        </main>
+        </StyledRegisterMain>
      );
 }
  
