@@ -222,65 +222,64 @@ const AwnserBox = ({ data }) => {
                     </div>
                     {
                         loggedInUser.id === data.creatorId &&
-                        <div className="editDelete">
-                            <button
-                                onClick={() => 
-                                setEditClick(true)
-                                }
-                            >Edit</button>
-                            <button
-                                onClick={() => {
-                                setAwnsers({ type: AwnsersActionTypes.delete, 
+                            <div className="editDelete">
+                                <button
+                                    onClick={() => 
+                                    setEditClick(true)
+                                    }
+                                >Edit</button>
+                                <button
+                                    onClick={() => {
+                                    setAwnsers({ type: AwnsersActionTypes.delete, 
                                     id: data.id});
                                     navigate(`/questions/${data.questionId}`)
-                                }}
-                            >Delete</button>
-                        </div>
+                                    }}
+                                >Delete</button>
+                            </div>
                     }
                 </div>
                 {
                     editClick && 
                     <div className="editForm">
-        {
-            formValues.awnser && <Formik
-                    initialValues = {formValues}
-                        validationSchema = {validationSchema} 
-                        onSubmit = {(values) => {
-                            const finalValues = {
-                                ...values,
-                                edited: true,
-                                modified: new Date().toISOString().slice(0,10)
-                            };
-                            setAwnsers({
-                                type: AwnsersActionTypes.edit,
-                                id: data.id,
-                                data: finalValues
-                            });
-                            setEditClick(false);
+                        {
+                            formValues.awnser && <Formik
+                                initialValues = {formValues}
+                                validationSchema = {validationSchema} 
+                                onSubmit = {(values) => {
+                                const finalValues = {
+                                    ...values,
+                                    edited: true,
+                                    modified: new Date().toISOString().slice(0,10)
+                                };
+                                setAwnsers({
+                                    type: AwnsersActionTypes.edit,
+                                    id: data.id,
+                                    data: finalValues
+                                });
+                                setEditClick(false);
                             
-                        }}
-                >
-                    {(props) => (
-                        <form onSubmit={props.handleSubmit}>
-                            <textarea
-                                name="awnser"
-                                id="awnser"
-                                value={props.values.awnser}
-                                onChange={props.handleChange}
-                                onBlur={props.handleBlur}
-                                placeholder="Edit your awnser here..."
-                            ></textarea>
-                            <button type="submit">Edit</button>
-                        </form>
-                    )}
-                </Formik>
-        }
-        </div>
+                                }}
+                            >
+                                {(props) => (
+                                    <form onSubmit={props.handleSubmit}>
+                                        <textarea
+                                            name="awnser"
+                                            id="awnser"
+                                            value={props.values.awnser}
+                                            onChange={props.handleChange}
+                                            onBlur={props.handleBlur}
+                                            placeholder="Edit your awnser here..."
+                                        ></textarea>
+                                        <button type="submit">Edit</button>
+                                    </form>
+                                )}
+                            </Formik>
+                        }
+                    </div>
                 }
-            
             </div>
         </StyledAwnserBox>
-     );
+    );
 }
  
 export default AwnserBox;
