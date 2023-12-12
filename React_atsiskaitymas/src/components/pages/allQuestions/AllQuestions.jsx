@@ -119,7 +119,7 @@ const AllQuestions = () => {
                     <span>Sort by:</span>
                     <button
                         onClick={() => {setSortByDate(!sortByDate)}}
-                    >{sortByDate ? "Unsorted" : "Newest"}</button>
+                    >{sortByDate ? "Unsorted" : "From oldest"}</button>
                 </div>
             </div>
             <div className="questions">
