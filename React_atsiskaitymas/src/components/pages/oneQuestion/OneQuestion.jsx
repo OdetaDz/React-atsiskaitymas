@@ -273,7 +273,7 @@ const OneQuestion = () => {
                                 >Edit</button>
                                 <button
                                     onClick={() => {
-                                        dispatchQuestions({ type: QuestionsActionTypes.delete, id: id });
+                                        setQuestion({ type: QuestionsActionTypes.delete, id: id });
                                         navigate("/questions/allQuestions")
                                     }}
                                 >Delete</button>

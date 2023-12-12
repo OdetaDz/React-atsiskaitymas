@@ -49,6 +49,15 @@
       "password": "$2a$08$noYFOLuVBSLrZKSZ1lLGAerO9Vs2Z3xBb5.AW.fPWoZj82BT.olCW",
       "registerDate": "2023-12-11",
       "avatar": "https://comicvine.gamespot.com/a/uploads/scale_small/11/111746/4352099-afb739e01cea4eff83b5b6c1028f7df1.jpg"
+    },
+    {
+      "id": "d2e3e363-1dd9-4b55-a41e-9c29b9e4e481",
+      "userName": "Daffy",
+      "email": "daffy@duck.com",
+      "passwordNormal": "Labas123@",
+      "password": "$2a$08$Lygr9K2rGn8jbybVZKevbeB5H1s5X4cS0.FnrZBs2Tone1n5ZkiIC",
+      "registerDate": "2023-12-12",
+      "avatar": "https://easydrawingguides.com/wp-content/uploads/2021/09/how-to-draw-daffy-duck-featured-image-1200.png"
     }
   ],
   "questions": [
@@ -66,10 +75,10 @@
       "id": 2,
       "creatorId": 1,
       "name": "Which superpower would you choose and why?",
-      "question": "Ability to fly, read minds, breathe underwater, teleportation, super strength, to read fast or talk to animals?",
+      "question": "Ability to fly, read minds, breathe underwater, teleportation, super strength, to read fast or talk to animals? :)",
       "created": "2023-12-03",
       "edited": true,
-      "modified": "2023-12-10",
+      "modified": "2023-12-12",
       "likes": 3
     },
     {
@@ -80,7 +89,7 @@
       "created": "2023-12-07",
       "edited": false,
       "modified": "",
-      "likes": 3
+      "likes": 8
     },
     {
       "id": 4,
@@ -131,6 +140,16 @@
       "edited": false,
       "modified": "",
       "likes": ""
+    },
+    {
+      "id": "59c79ebc-3536-48da-aac5-0528f3813842",
+      "creatorId": 1,
+      "name": "bandymas",
+      "question": "Bandymas123",
+      "created": "2023-12-12",
+      "edited": false,
+      "modified": "",
+      "likes": ""
     }
   ],
   "awnsers": [
@@ -144,17 +163,6 @@
       "edited": true,
       "modified": "2023-12-11",
       "likes": ""
-    },
-    {
-      "id": "9b91a160-89f5-444c-a784-6cc8eb529bc5",
-      "creatorId": 1,
-      "questionId": 1,
-      "creatorUserName": "Admin",
-      "awnser": "Tenerife!! I've been there and it's beautiful. ",
-      "created": "2023-12-03",
-      "edited": true,
-      "modified": "2023-12-11",
-      "likes": 3
     },
     {
       "id": "e60c416b-c89a-450a-9605-956305eed0cf",
@@ -187,7 +195,7 @@
       "awnser": "Depends... If I'm on meds, then the sky is all the colors of rainbow... But if I'm not on my meds, then it's gray...",
       "edited": true,
       "modified": "2023-12-11",
-      "likes": 0
+      "likes": 4
     },
     {
       "id": "7e842b77-e1d3-40e9-8330-fdb938feee32",
@@ -220,6 +228,17 @@
       "awnser": "Definitely the monsters under the bed",
       "edited": false,
       "modified": "",
+      "likes": 0
+    },
+    {
+      "id": "8d021cfb-9d3f-4374-b140-51ff6f24a138",
+      "creatorId": 1,
+      "questionId": 3,
+      "creatorUserName": "Admin",
+      "created": "2023-12-12",
+      "awnser": "Blue color",
+      "edited": true,
+      "modified": "2023-12-12",
       "likes": 0
     }
   ]
